@@ -4,7 +4,7 @@
     --color-bg-light: oklch(100% 0 0);
     --color-bg-dark: oklch(20% 0 0);
     --color-container-light: oklch(98% 0 360);
-    --color-container-dark: oklch(10%, 0, 360);
+    --color-container-dark: oklch(23% 0 0);
     --color-primary: oklch(68.24% 0.222 146.12);
     --color-text-primary-light: oklch(10% 0 0);
     --color-text-primary-dark: oklch(90% 0 0);
@@ -17,6 +17,6 @@
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
     --spacing-xl: 4rem;
-    --spacing-2xl: 8rem;
-    --spacing-3xl: 16rem;
+    --spacing-2xl: 6rem;
+    --spacing-3xl: 10rem;
 }
