@@ -7,6 +7,9 @@ import { useAppSelector } from '../hooks/redux'
 
 export default function HomePage() {
     const fromDate = useAppSelector((state) => state.filters.fromDate)
+    const effectiveTheme = useAppSelector(
+        (state) => state.settings.effectiveTheme
+    )
 
     return (
         <div className="flex flex-col flex-1 w-full h-full gap-lg">
@@ -62,10 +65,17 @@ export default function HomePage() {
                             zoom={11}
                             scrollWheelZoom={true}
                         >
-                            <TileLayer
-                                attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
-                                url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-                            />
+                            {effectiveTheme === 'dark' ? (
+                                <TileLayer
+                                    attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+                                    url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+                                />
+                            ) : (
+                                <TileLayer
+                                    attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+                                    url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+                                />
+                            )}
                         </MapContainer>
                     </div>
                     <div className="flex-1">

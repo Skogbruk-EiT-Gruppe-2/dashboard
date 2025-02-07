@@ -2,18 +2,34 @@ import { Routes, Route } from 'react-router'
 import Sidebar from './components/Sidebar'
 import HomePage from './pages/HomePage'
 import SettingsPage from './pages/SettingsPage'
-import { useAppSelector } from './hooks/redux'
-import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from './hooks/redux'
+import { useEffect, useRef } from 'react'
+import { setEffectiveTheme } from './redux/settingsSlice'
 
 function App() {
     const theme = useAppSelector((state) => state.settings.theme)
+    const dispatch = useAppDispatch()
+    const darkModeListenerEnabledRef = useRef(false)
 
     useEffect(() => {
-        console.log(theme)
         document.body.classList.remove('light', 'dark')
         if (theme === undefined || theme === 'system') {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-                document.body.classList.add('dark')
+            const darkModePreference = window.matchMedia(
+                '(prefers-color-scheme: dark)'
+            )
+            if (darkModeListenerEnabledRef.current === false) {
+                darkModePreference.addEventListener('change', (e) => {
+                    document.body.classList.remove('light', 'dark')
+                    if (e.matches) {
+                        document.body.classList.add('dark')
+                        dispatch(setEffectiveTheme('dark'))
+                    } else {
+                        dispatch(setEffectiveTheme('light'))
+                    }
+                })
+                darkModeListenerEnabledRef.current = true
+            }
+            if (darkModePreference.matches) document.body.classList.add('dark')
         } else {
             document.body.classList.add(theme)
         }
