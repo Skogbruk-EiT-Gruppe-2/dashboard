@@ -14,8 +14,8 @@ type Observation = {
 const mockData: Observation[] = [
     {
         timestamp: '2025-02-09T08:15:30Z',
-        latitude: 45.6789,
-        longitude: -122.5678,
+        latitude: 63.37653,
+        longitude: 10.61159,
         value: {
             id: 'B001',
             name: 'Northern Cardinal',
@@ -24,8 +24,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:17:45Z',
-        latitude: 45.6823,
-        longitude: -122.5692,
+        latitude: 63.365,
+        longitude: 10.65,
         value: {
             id: 'B002',
             name: 'Bald Eagle',
@@ -34,8 +34,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:20:12Z',
-        latitude: 45.6795,
-        longitude: -122.5701,
+        latitude: 63.3558,
+        longitude: 10.6905,
         value: {
             id: 'B003',
             name: 'American Robin',
@@ -44,8 +44,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:22:05Z',
-        latitude: 45.6801,
-        longitude: -122.5713,
+        latitude: 63.3689,
+        longitude: 10.7201,
         value: {
             id: 'B004',
             name: 'Peregrine Falcon',
@@ -54,8 +54,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:25:33Z',
-        latitude: 45.6832,
-        longitude: -122.5725,
+        latitude: 63.3446,
+        longitude: 10.7604,
         value: {
             id: 'B005',
             name: 'Great Horned Owl',
@@ -64,8 +64,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:30:14Z',
-        latitude: 45.681,
-        longitude: -122.5742,
+        latitude: 63.3607,
+        longitude: 10.6702,
         value: {
             id: 'B006',
             name: 'Snowy Owl',
@@ -74,8 +74,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:35:47Z',
-        latitude: 45.6787,
-        longitude: -122.5758,
+        latitude: 63.3743,
+        longitude: 10.7123,
         value: {
             id: 'B007',
             name: 'Eastern Bluebird',
@@ -84,8 +84,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:40:29Z',
-        latitude: 45.6828,
-        longitude: -122.5765,
+        latitude: 63.3578,
+        longitude: 10.6806,
         value: {
             id: 'B008',
             name: 'Red-tailed Hawk',
@@ -94,8 +94,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:45:50Z',
-        latitude: 45.6793,
-        longitude: -122.5781,
+        latitude: 63.3725,
+        longitude: 10.7502,
         value: {
             id: 'B009',
             name: 'Wood Thrush',
@@ -104,8 +104,8 @@ const mockData: Observation[] = [
     },
     {
         timestamp: '2025-02-09T08:50:10Z',
-        latitude: 45.6815,
-        longitude: -122.5797,
+        latitude: 63.3489,
+        longitude: 10.7354,
         value: {
             id: 'B010',
             name: 'Scarlet Tanager',

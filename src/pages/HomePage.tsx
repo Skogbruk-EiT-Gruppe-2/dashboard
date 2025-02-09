@@ -1,10 +1,11 @@
 import { SlidersHorizontal, Antenna, Rss, Telescope } from 'lucide-react'
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { Circle, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import Button from '../components/Button'
 import InfoBox from '../components/InfoBox'
 import ListElement from '../components/ListElement'
 import { useAppSelector } from '../hooks/redux'
 import { useResults } from '../hooks/useResults'
+import { useMemo } from 'react'
 
 export default function HomePage() {
     const fromDate = useAppSelector((state) => state.filters.fromDate)
@@ -12,7 +13,14 @@ export default function HomePage() {
         (state) => state.settings.effectiveTheme
     )
 
-    const { data, isLoading } = useResults()
+    const { data: observations, isLoading } = useResults()
+    const redlistedBirds = useMemo(
+        () =>
+            observations?.filter(
+                (observation) => observation.value.isRedlisted
+            ),
+        [observations]
+    )
 
     return (
         <div className="flex flex-col flex-1 w-full h-full gap-lg">
@@ -46,7 +54,7 @@ export default function HomePage() {
                             <InfoBox
                                 className="flex-1"
                                 title="Detections"
-                                value="1,234"
+                                value={observations?.length.toString() ?? '-'}
                                 description={
                                     fromDate !== undefined
                                         ? `since ${fromDate.toString()}`
@@ -57,7 +65,7 @@ export default function HomePage() {
                             <InfoBox
                                 className="flex-1"
                                 title="Rare bird observations"
-                                value="123"
+                                value={redlistedBirds?.length.toString() ?? '-'}
                                 description={
                                     fromDate !== undefined
                                         ? `since ${fromDate.toString()}`
@@ -85,6 +93,27 @@ export default function HomePage() {
                                             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
                                         />
                                     )}
+                                    {observations &&
+                                        observations.map((observation) => (
+                                            <Circle
+                                                center={[
+                                                    observation.latitude,
+                                                    observation.longitude,
+                                                ]}
+                                                radius={200}
+                                                pathOptions={{
+                                                    color: observation.value
+                                                        .isRedlisted
+                                                        ? 'red'
+                                                        : '#00ba32',
+                                                }}
+                                            >
+                                                <Popup>
+                                                    {observation.timestamp} -{' '}
+                                                    {observation.value.name}
+                                                </Popup>
+                                            </Circle>
+                                        ))}
                                 </MapContainer>
                             </div>
                             <div className="flex-1">
