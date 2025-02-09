@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-type FiltersState = {
+export type FiltersState = {
     fromDate?: Date
 }
 
