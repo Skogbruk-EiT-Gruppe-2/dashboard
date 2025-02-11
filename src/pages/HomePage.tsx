@@ -119,16 +119,40 @@ export default function HomePage() {
                             <div className="flex-1">
                                 <InfoBox
                                     className="w-full h-full"
-                                    title="Detections"
+                                    title="Logs"
                                     description="since last month"
                                     icon={<Rss />}
                                 >
-                                    <>
+                                    <div className="absolute top-sm bottom-lg left-0 right-0 overflow-y-scroll flex flex-col gap-sm">
                                         <ListElement
                                             title="Element"
                                             description="This is an element"
                                         />
-                                    </>
+                                        <ListElement
+                                            title="Element"
+                                            description="This is an element"
+                                        />
+                                        <ListElement
+                                            title="Element"
+                                            description="This is an element"
+                                        />
+                                        <ListElement
+                                            title="Element"
+                                            description="This is an element"
+                                        />
+                                        <ListElement
+                                            title="Element"
+                                            description="This is an element"
+                                        />
+                                        <ListElement
+                                            title="Element"
+                                            description="This is an element"
+                                        />
+                                        <ListElement
+                                            title="Element"
+                                            description="This is an element"
+                                        />
+                                    </div>
                                 </InfoBox>
                             </div>
                         </div>

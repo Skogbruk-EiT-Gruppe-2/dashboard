@@ -27,7 +27,9 @@ export default function InfoBox(props: InfoBoxProps) {
                     )}
                 </div>
                 {children !== undefined && (
-                    <div className="flex-1 pb-lg pt-sm">{children}</div>
+                    <div className="flex-1 pb-lg pt-sm relative">
+                        {children}
+                    </div>
                 )}
             </div>
             <p className="text-sm shrink">{description}</p>
