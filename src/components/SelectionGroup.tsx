@@ -3,7 +3,7 @@ import Button from './Button'
 
 type SelectionGroupOption = {
     contentElement: React.ReactNode
-    onClick?: () => any
+    onClick?: () => void
     className?: string
 }
 

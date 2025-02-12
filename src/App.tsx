@@ -33,7 +33,7 @@ function App() {
         } else {
             document.body.classList.add(theme)
         }
-    }, [theme])
+    }, [theme, dispatch])
 
     return (
         <div className=" text-text-primary-light dark:text-text-primary-dark w-dvw h-dvh flex bg-bg-light dark:bg-bg-dark">

@@ -3,15 +3,16 @@ import SelectionGroup from '../components/SelectionGroup'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { setTheme } from '../redux/settingsSlice'
 
+const themeOptions = [
+    { title: 'System', value: 'system' },
+    { title: 'Light', value: 'light' },
+    { title: 'Dark', value: 'dark' },
+]
+
 export default function SettingsPage() {
     const theme = useAppSelector((state) => state.settings.theme)
     const dispatch = useAppDispatch()
 
-    const themeOptions = [
-        { title: 'System', value: 'system' },
-        { title: 'Light', value: 'light' },
-        { title: 'Dark', value: 'dark' },
-    ]
     const currentThemeIndex =
         useMemo(() => {
             for (let i = 0; i < themeOptions.length; i++) {
