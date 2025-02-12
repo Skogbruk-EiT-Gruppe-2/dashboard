@@ -1,5 +1,5 @@
 import { SlidersHorizontal, Antenna, Rss, Telescope } from 'lucide-react'
-import { Circle, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Circle, MapContainer, Popup, TileLayer } from 'react-leaflet'
 import Button from '../components/Button'
 import InfoBox from '../components/InfoBox'
 import ListElement from '../components/ListElement'
