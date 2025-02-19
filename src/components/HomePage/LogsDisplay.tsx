@@ -1,4 +1,4 @@
-import { Rss } from 'lucide-react'
+import { Logs, Rss } from 'lucide-react'
 import InfoBox from '../InfoBox'
 import ListElement from '../ListElement'
 import { getLogs } from '../../utils/queries'
@@ -15,7 +15,7 @@ export default function LogsDisplay() {
             className="w-full h-full"
             title="Logs"
             description="since last month"
-            icon={<Rss />}
+            icon={<Logs />}
         >
             <div className="absolute top-sm bottom-lg left-0 right-0 overflow-y-scroll ">
                 {isLoadingLogs ? (
