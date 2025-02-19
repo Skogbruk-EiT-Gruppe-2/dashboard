@@ -13,6 +13,59 @@ type Observation = {
     }
 }
 
+type Log = {
+    _id: string
+    type: string
+    device: {
+        deviceId: string
+        collectionId: string
+        tags: {
+            name: string
+        }
+        firmware: {
+            currentFirmwareId: string
+            targetFirmwareId: string
+            firmwareVersion: string
+            serialNumber: string
+            modelNumber: string
+            manufacturer: string
+            state: string
+            stateMessage: string
+        }
+        config: {
+            ciot: {
+                imsi: string
+                imei: string
+            }
+        }
+        metadata: {
+            ciot: {
+                gatewayId: string
+                allocatedIp: string
+                allocatedAt: string
+                mcc: number
+                mnc: number
+                country: string
+                network: string
+                countryCode: string
+                lastUpdate: string
+                lastImsi: string
+                lastImei: string
+            }
+        }
+        lastGatewayId: string
+        lastTransport: string
+        lastReceived: string
+        lastPayload: string
+        enabled: boolean
+    }
+    payload: string
+    received: string
+    transport: string
+    messageId: string
+    gatewayId: string
+}
+
 export const getObservations = async (filters: FiltersState) => {
     const res = await fetch(`${API_URL}/observations`, {
         method: 'GET',
@@ -22,5 +75,20 @@ export const getObservations = async (filters: FiltersState) => {
     })
     const data = (await res.json()) as Observation[]
     data satisfies Observation[] // Ensure that the data is of the correct type, throws an error if not
+    return data
+}
+
+export const getLogs = async (page: number, pageSize: number) => {
+    const res = await fetch(
+        `${API_URL}/logs?page=${page}&pageSize=${pageSize}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+    )
+    const data = (await res.json()) as Log[]
+    data satisfies Log[] // Ensure that the data is of the correct type, throws an error if not
     return data
 }

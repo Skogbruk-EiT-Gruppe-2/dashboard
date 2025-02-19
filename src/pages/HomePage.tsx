@@ -2,10 +2,10 @@ import { SlidersHorizontal, Antenna, Rss, Telescope } from 'lucide-react'
 import { Circle, MapContainer, Popup, TileLayer } from 'react-leaflet'
 import Button from '../components/Button'
 import InfoBox from '../components/InfoBox'
-import ListElement from '../components/ListElement'
 import { useAppSelector } from '../hooks/redux'
 import { useResults } from '../hooks/useResults'
 import { useMemo } from 'react'
+import LogsDisplay from '../components/HomePage/LogsDisplay'
 
 export default function HomePage() {
     const fromDate = useAppSelector((state) => state.filters.fromDate)
@@ -117,43 +117,7 @@ export default function HomePage() {
                                 </MapContainer>
                             </div>
                             <div className="flex-1">
-                                <InfoBox
-                                    className="w-full h-full"
-                                    title="Logs"
-                                    description="since last month"
-                                    icon={<Rss />}
-                                >
-                                    <div className="absolute top-sm bottom-lg left-0 right-0 overflow-y-scroll flex flex-col gap-sm">
-                                        <ListElement
-                                            title="Element"
-                                            description="This is an element"
-                                        />
-                                        <ListElement
-                                            title="Element"
-                                            description="This is an element"
-                                        />
-                                        <ListElement
-                                            title="Element"
-                                            description="This is an element"
-                                        />
-                                        <ListElement
-                                            title="Element"
-                                            description="This is an element"
-                                        />
-                                        <ListElement
-                                            title="Element"
-                                            description="This is an element"
-                                        />
-                                        <ListElement
-                                            title="Element"
-                                            description="This is an element"
-                                        />
-                                        <ListElement
-                                            title="Element"
-                                            description="This is an element"
-                                        />
-                                    </div>
-                                </InfoBox>
+                                <LogsDisplay />
                             </div>
                         </div>
                     </>
