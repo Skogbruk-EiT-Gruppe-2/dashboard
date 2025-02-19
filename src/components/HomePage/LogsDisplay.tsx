@@ -1,4 +1,4 @@
-import { Logs, Rss } from 'lucide-react'
+import { Logs } from 'lucide-react'
 import InfoBox from '../InfoBox'
 import ListElement from '../ListElement'
 import { getLogs } from '../../utils/queries'
