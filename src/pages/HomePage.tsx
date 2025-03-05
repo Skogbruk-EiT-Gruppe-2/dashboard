@@ -8,7 +8,7 @@ import { useMemo } from 'react'
 import LogsDisplay from '../components/HomePage/LogsDisplay'
 
 export default function HomePage() {
-    const fromDate = useAppSelector((state) => state.filters.fromDate)
+    const from_date = useAppSelector((state) => state.filters.from_date)
     const effectiveTheme = useAppSelector(
         (state) => state.settings.effectiveTheme
     )
@@ -17,7 +17,7 @@ export default function HomePage() {
     const redlistedBirds = useMemo(
         () =>
             observations?.filter(
-                (observation) => observation.value.isRedlisted
+                (observation) => observation.value.is_redlisted
             ),
         [observations]
     )
@@ -56,8 +56,8 @@ export default function HomePage() {
                                 title="Detections"
                                 value={observations?.length.toString() ?? '-'}
                                 description={
-                                    fromDate !== undefined
-                                        ? `since ${fromDate.toString()}`
+                                    from_date !== undefined
+                                        ? `since ${from_date.toString()}`
                                         : 'in total'
                                 }
                                 icon={<Rss />}
@@ -67,8 +67,8 @@ export default function HomePage() {
                                 title="Rare bird observations"
                                 value={redlistedBirds?.length.toString() ?? '-'}
                                 description={
-                                    fromDate !== undefined
-                                        ? `since ${fromDate.toString()}`
+                                    from_date !== undefined
+                                        ? `since ${from_date.toString()}`
                                         : 'in total'
                                 }
                                 icon={<Telescope />}
@@ -94,26 +94,38 @@ export default function HomePage() {
                                         />
                                     )}
                                     {observations &&
-                                        observations.map((observation) => (
-                                            <Circle
-                                                center={[
-                                                    observation.latitude,
-                                                    observation.longitude,
-                                                ]}
-                                                radius={200}
-                                                pathOptions={{
-                                                    color: observation.value
-                                                        .isRedlisted
-                                                        ? 'red'
-                                                        : '#00ba32',
-                                                }}
-                                            >
-                                                <Popup>
-                                                    {observation.timestamp} -{' '}
-                                                    {observation.value.name}
-                                                </Popup>
-                                            </Circle>
-                                        ))}
+                                        observations.map(
+                                            (observation) =>
+                                                observation.latitude &&
+                                                observation.longitude && (
+                                                    <Circle
+                                                        center={[
+                                                            observation.latitude,
+                                                            observation.longitude,
+                                                        ]}
+                                                        radius={200}
+                                                        pathOptions={{
+                                                            color: observation
+                                                                .value
+                                                                .is_redlisted
+                                                                ? 'red'
+                                                                : '#00ba32',
+                                                        }}
+                                                    >
+                                                        <Popup>
+                                                            {
+                                                                observation.timestamp
+                                                            }{' '}
+                                                            -{' '}
+                                                            {
+                                                                observation
+                                                                    .value
+                                                                    .classification
+                                                            }
+                                                        </Popup>
+                                                    </Circle>
+                                                )
+                                        )}
                                 </MapContainer>
                             </div>
                             <div className="flex-1">

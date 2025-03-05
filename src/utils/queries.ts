@@ -3,14 +3,15 @@ import { FiltersState } from '../redux/filtersSlice'
 const API_URL = import.meta.env.VITE_API_URL
 
 type Observation = {
+    device_imsi: string
     timestamp: string
-    latitude: number
-    longitude: number
+    latitude?: number
+    longitude?: number
     value: {
-        id: string
-        name: string
-        isRedlisted: boolean
+        classification: string
+        is_redlisted: boolean
     }
+    file_path: string
 }
 
 type Log = {
@@ -67,12 +68,21 @@ type Log = {
 }
 
 export const getObservations = async (filters: FiltersState) => {
-    const res = await fetch(`${API_URL}/observations`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
+    const relevantFilters = Object.entries(filters).filter(
+        ([key, value]) => value !== undefined
+    )
+    filters = Object.fromEntries(relevantFilters)
+    const res = await fetch(
+        `${API_URL}/observations/?${new URLSearchParams(
+            filters as Record<string, string>
+        ).toString()}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+    )
     const data = (await res.json()) as Observation[]
     data satisfies Observation[] // Ensure that the data is of the correct type, throws an error if not
     return data

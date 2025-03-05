@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export type FiltersState = {
-    fromDate?: Date
+    from_date?: Date
 }
 
 const initialState = {
-    fromDate: undefined,
+    from_date: undefined,
 } satisfies FiltersState as FiltersState
 
 export const filtersSlice = createSlice({
@@ -13,7 +13,7 @@ export const filtersSlice = createSlice({
     initialState,
     reducers: {
         setFromDate: (state, action) => {
-            state.fromDate = action.payload
+            state.from_date = action.payload
         },
     },
 })
